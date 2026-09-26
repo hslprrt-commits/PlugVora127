@@ -1,146 +1,166 @@
+"use client";
+
+import { useState } from "react";
+
 const addons = [
   {
-    title: "Ultra Survival",
-    description: "إضافات قوية لتحسين تجربة البقاء في Minecraft.",
-    category: "Survival",
+    title: "EssentialsX",
+    category: "إدارة السيرفر",
+    description: "مجموعة أدوات أساسية لإدارة سيرفر Minecraft.",
+    version: "1.21",
   },
   {
-    title: "Magic World",
-    description: "سحر ومغامرات وعناصر جديدة لعالم Minecraft.",
-    category: "Adventure",
+    title: "Geyser",
+    category: "توافق",
+    description: "السماح للاعبي Bedrock بالدخول إلى سيرفر Java.",
+    version: "1.21",
   },
   {
-    title: "Better Mobs",
-    description: "مخلوقات وقدرات جديدة لعالم Minecraft.",
-    category: "Mobs",
+    title: "LuckPerms",
+    category: "صلاحيات",
+    description: "إدارة الرتب والصلاحيات بطريقة احترافية.",
+    version: "1.21",
+  },
+  {
+    title: "WorldEdit",
+    category: "بناء",
+    description: "أداة قوية وسريعة لبناء وتعديل العوالم.",
+    version: "1.21",
+  },
+  {
+    title: "Vault",
+    category: "اقتصاد",
+    description: "واجهة توافق لأنظمة الاقتصاد والصلاحيات.",
+    version: "1.21",
+  },
+  {
+    title: "BetterRTP",
+    category: "أدوات",
+    description: "تنقّل عشوائي آمن داخل عالم السيرفر.",
+    version: "1.21",
   },
 ];
 
 export default function Home() {
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("الكل");
+
+  const filteredAddons = addons.filter((addon) => {
+    const matchesSearch =
+      addon.title.toLowerCase().includes(search.toLowerCase()) ||
+      addon.description.toLowerCase().includes(search.toLowerCase());
+
+    const matchesCategory =
+      category === "الكل" || addon.category === category;
+
+    return matchesSearch && matchesCategory;
+  });
+
   return (
-    <main
-      dir="rtl"
-      className="min-h-screen bg-[#080b10] text-white"
-    >
-      <nav className="border-b border-white/10 bg-[#080b10]">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <div className="text-2xl font-black">
+    <main className="min-h-screen bg-[#070a0d] text-white px-5 py-10">
+      <header className="mx-auto max-w-6xl">
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold">
             <span className="text-emerald-400">Plug</span>Vora
-          </div>
+          </h1>
 
-          <div className="hidden gap-8 text-sm text-zinc-400 md:flex">
-            <a href="#" className="hover:text-emerald-400">
-              الرئيسية
-            </a>
-            <a href="#addons" className="hover:text-emerald-400">
-              الإضافات
-            </a>
-            <a href="#categories" className="hover:text-emerald-400">
-              التصنيفات
-            </a>
-          </div>
-
-          <button className="rounded-xl border border-white/10 px-4 py-2 text-sm">
+          <button className="rounded-xl border border-white/10 px-5 py-2">
             تسجيل الدخول
           </button>
         </div>
-      </nav>
 
-      <section className="px-6 py-28 text-center">
-        <div className="mx-auto max-w-4xl">
-          <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-300">
+        <section className="py-24 text-center">
+          <div className="mx-auto mb-6 w-fit rounded-full border border-emerald-500/30 bg-emerald-500/10 px-5 py-2 text-emerald-300">
             منصة Minecraft الجديدة
-          </span>
+          </div>
 
-          <h1 className="mt-8 text-5xl font-black leading-tight md:text-7xl">
+          <h2 className="text-5xl font-black leading-tight">
             اكتشف أفضل
-            <span className="block text-emerald-400">
-              إضافات Minecraft
-            </span>
-          </h1>
+            <br />
+            <span className="text-emerald-400">إضافات Minecraft</span>
+          </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">
             PlugVora منصة تجمع الإضافات والموارد لمجتمع Minecraft.
           </p>
 
-          <div className="mx-auto mt-10 flex max-w-xl flex-col gap-3 sm:flex-row">
+          <div className="mx-auto mt-10 flex max-w-2xl gap-3">
             <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="ابحث عن إضافة..."
-              className="flex-1 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 outline-none"
+              className="w-full rounded-2xl border border-white/10 bg-white/5 px-5 py-4 outline-none focus:border-emerald-400"
             />
 
-            <button className="rounded-2xl bg-emerald-500 px-7 py-4 font-black text-black">
+            <button className="rounded-2xl bg-emerald-500 px-8 font-bold text-black">
               بحث
             </button>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section
-        id="addons"
-        className="mx-auto max-w-7xl px-6 py-20"
-      >
-        <h2 className="mb-10 text-4xl font-black">
-          إضافات مميزة
-        </h2>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {addons.map((addon) => (
-            <article
-              key={addon.title}
-              className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1"
-            >
-              <div className="flex h-40 items-center justify-center rounded-2xl bg-emerald-400/10 text-6xl">
-                ⛏️
-              </div>
-
-              <span className="mt-5 inline-block rounded-lg bg-emerald-400/10 px-3 py-1 text-xs text-emerald-300">
-                {addon.category}
-              </span>
-
-              <h3 className="mt-4 text-xl font-black">
-                {addon.title}
-              </h3>
-
-              <p className="mt-3 leading-7 text-zinc-500">
-                {addon.description}
-              </p>
-
-              <button className="mt-6 w-full rounded-xl border border-white/10 py-3 font-bold hover:bg-emerald-500 hover:text-black">
-                عرض الإضافة
+        <section>
+          <div className="mb-8 flex flex-wrap gap-3">
+            {[
+              "الكل",
+              "إدارة السيرفر",
+              "توافق",
+              "صلاحيات",
+              "بناء",
+              "اقتصاد",
+              "أدوات",
+            ].map((item) => (
+              <button
+                key={item}
+                onClick={() => setCategory(item)}
+                className={`rounded-xl px-4 py-2 ${
+                  category === item
+                    ? "bg-emerald-500 text-black"
+                    : "bg-white/5 text-gray-300"
+                }`}
+              >
+                {item}
               </button>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section
-        id="categories"
-        className="border-y border-white/10 bg-white/[0.02] px-6 py-20"
-      >
-        <div className="mx-auto max-w-7xl">
-          <h2 className="text-center text-4xl font-black">
-            التصنيفات
-          </h2>
-
-          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {["Survival", "Adventure", "Mobs", "Weapons"].map(
-              (category) => (
-                <button
-                  key={category}
-                  className="rounded-2xl border border-white/10 bg-[#0d1118] p-6 font-black"
-                >
-                  {category}
-                </button>
-              )
-            )}
+            ))}
           </div>
-        </div>
-      </section>
 
-      <footer className="px-6 py-10 text-center text-sm text-zinc-600">
-        © 2026 PlugVora
-      </footer>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredAddons.map((addon) => (
+              <article
+                key={addon.title}
+                className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 transition hover:border-emerald-400/50"
+              >
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-xl font-bold">{addon.title}</h3>
+
+                  <span className="rounded-lg bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
+                    {addon.version}
+                  </span>
+                </div>
+
+                <p className="mb-5 text-gray-400">
+                  {addon.description}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-emerald-400">
+                    {addon.category}
+                  </span>
+
+                  <button className="rounded-xl bg-white/10 px-4 py-2 text-sm hover:bg-emerald-500 hover:text-black">
+                    التفاصيل
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {filteredAddons.length === 0 && (
+            <p className="py-16 text-center text-gray-500">
+              ماكو إضافات مطابقة للبحث.
+            </p>
+          )}
+        </section>
+      </header>
     </main>
   );
 }

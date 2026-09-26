@@ -9,6 +9,9 @@ export default async function AddonPage({ params }: PageProps) {
 
   const addonName = decodeURIComponent(name);
 
+  // رابط تحميل الإضافة
+  const downloadUrl = "#";
+
   return (
     <main
       dir="rtl"
@@ -17,12 +20,12 @@ export default async function AddonPage({ params }: PageProps) {
       <div className="mx-auto max-w-4xl">
         <a
           href="/"
-          className="text-sm text-emerald-400 hover:text-emerald-300"
+          className="text-sm text-emerald-400 transition hover:text-emerald-300"
         >
           ← العودة إلى الإضافات
         </a>
 
-        <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-8">
+        <div className="mt-10 rounded-3xl border border-white/10 bg-white/[0.04] p-8 shadow-2xl">
           <div className="flex h-32 w-32 items-center justify-center rounded-3xl bg-emerald-500/10 text-6xl">
             ⛏️
           </div>
@@ -53,9 +56,13 @@ export default async function AddonPage({ params }: PageProps) {
             </div>
           </div>
 
-          <button className="mt-8 w-full rounded-2xl bg-emerald-500 py-4 font-black text-black hover:bg-emerald-400">
+          <a
+            href={downloadUrl}
+            download
+            className="mt-8 block w-full rounded-2xl bg-emerald-500 py-4 text-center font-black text-black transition hover:bg-emerald-400"
+          >
             تحميل الإضافة
-          </button>
+          </a>
         </div>
       </div>
     </main>

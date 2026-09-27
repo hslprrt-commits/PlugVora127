@@ -41,30 +41,18 @@ export default async function AddonPage({ params }: PageProps) {
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
 
             <div className="rounded-2xl bg-white/5 p-5">
-              <p className="text-sm text-gray-500">
-                الإصدار
-              </p>
-              <p className="mt-2 font-bold">
-                1.0.0
-              </p>
+              <p className="text-sm text-gray-500">الإصدار</p>
+              <p className="mt-2 font-bold">1.0.0</p>
             </div>
 
             <div className="rounded-2xl bg-white/5 p-5">
-              <p className="text-sm text-gray-500">
-                Minecraft
-              </p>
-              <p className="mt-2 font-bold">
-                1.21+
-              </p>
+              <p className="text-sm text-gray-500">Minecraft</p>
+              <p className="mt-2 font-bold">1.21+</p>
             </div>
 
             <div className="rounded-2xl bg-white/5 p-5">
-              <p className="text-sm text-gray-500">
-                النوع
-              </p>
-              <p className="mt-2 font-bold">
-                Plugin
-              </p>
+              <p className="text-sm text-gray-500">النوع</p>
+              <p className="mt-2 font-bold">Plugin</p>
             </div>
 
           </div>
